@@ -21,6 +21,14 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     administratorLogin: adminUsername
     administratorLoginPassword: adminPassword
   }
+
+  resource AllowAllWindowsAzureIps 'firewallRules@2023-05-01-preview' = {
+    name: 'AllowAllWindowsAzureIps'
+    properties: {
+      endIpAddress: '0.0.0.0'
+      startIpAddress: '0.0.0.0'
+    }
+  }
 }
 
 resource sqlDB 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {

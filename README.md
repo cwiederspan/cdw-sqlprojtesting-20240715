@@ -33,7 +33,7 @@ az deployment group create -g $BASE_NAME \
 --parameters \
 baseName=$BASE_NAME \
 location=$LOCATION \
-databaseName=WideWorldImporters \
+databaseName=AdventureWorksLT \
 adminUsername=$SQL_USER \
 adminPassword=$SQL_PASSWORD
 
