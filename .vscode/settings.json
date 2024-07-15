@@ -1,0 +1,5 @@
+{
+    "dataworkspace.excludedProjects": [
+        "database/wwi-ssdt/WideWorldImporters.sqlproj"
+    ]
+}
