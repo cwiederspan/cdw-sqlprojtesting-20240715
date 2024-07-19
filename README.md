@@ -33,13 +33,18 @@ az deployment group create -g $BASE_NAME \
 --parameters \
 baseName=$BASE_NAME \
 location=$LOCATION \
-databaseName=AdventureWorksLT \
-adminUsername=$SQL_USER \
-adminPassword=$SQL_PASSWORD
+databaseName=AdventureWorksLT
 
 
 # Clean up and delete the Resource Group
 
 az group delete --name $BASE_NAME --yes
+
+
+# Other miscellaneous
+
+docker build -t cwiederspan/adventureworksdab:latest -f ./dab/Dockerfile ./dab
+
+docker push 
 
 ```
