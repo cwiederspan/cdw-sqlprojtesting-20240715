@@ -7,6 +7,13 @@ param location string = resourceGroup().location
 @description('The name of the database to create within the SQL server.')
 param databaseName string
 
+@description('The administrator username of the SQL logical server.')
+param sqlUsername string = 'sqlsa'
+
+@description('The administrator password of the SQL logical server.')
+@secure()
+param sqlPassword string
+
 resource muid 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
   name: '${baseName}-muid'
   location: location
@@ -37,6 +44,8 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   name: '${baseName}-sql'
   location: location
   properties: {
+    administratorLogin: sqlUsername
+    administratorLoginPassword: sqlPassword
     administrators: {
       administratorType: 'ActiveDirectory'
       principalType: 'Application'

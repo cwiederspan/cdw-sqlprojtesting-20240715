@@ -33,7 +33,9 @@ az deployment group create -g $BASE_NAME \
 --parameters \
 baseName=$BASE_NAME \
 location=$LOCATION \
-databaseName=AdventureWorksLT
+databaseName=AdventureWorksLT \
+sqlUsername=$SQL_USER \
+sqlPassword=$SQL_PASSWORD
 
 
 # Clean up and delete the Resource Group
