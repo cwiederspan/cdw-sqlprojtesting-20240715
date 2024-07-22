@@ -109,8 +109,8 @@ resource containerApp 'Microsoft.App/containerApps@2022-03-01' ={
     template: {
       containers: [
         {
-          image: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
-          name: 'simple-hello-world-container'
+          image: 'cwiederspan/adventureworksdab:latest'
+          name: 'AdventureWorksLT'
           env: [
             {
               name: 'DATABASE_CONNECTION_STRING'
