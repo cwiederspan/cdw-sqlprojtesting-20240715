@@ -28,6 +28,27 @@ jobs:
           docker push $IMAGE_NAME:${{ github.sha }}
           docker push $IMAGE_NAME:latest
 
+  provision:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log into Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Deploy Bicep file
+        uses: azure/arm-deploy@v2
+        with:
+          scope: resourcegroup
+          resourceGroupName: ${{ vars.BASE_NAME }}
+          template: ./infra/main.bicep
+          parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
+          failOnStdErr: false
+
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +59,7 @@ jobs:
       - name: SQL Deploy
         uses: azure/sql-action@v2.3
         with:
-          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }} # Your connection string
+          connection-string: 'Server=tcp:${{ vars.BASE_NAME }}.database.windows.net,1433;Database=${{ vars.SQL_DB_NAME }};User ID=${{ vars.SQL_USERNAME }};Password=${{ secrets.SQL_PASSWORD }};Trusted_Connection=False;Encrypt=True;'   # Your connection string
           path: './database/AdventureWorksLT/AdventureWorksLT.sqlproj'
           action: 'publish'
           build-arguments: '-c Release'                 # Optional build options
