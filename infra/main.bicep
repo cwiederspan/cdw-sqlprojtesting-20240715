@@ -114,7 +114,8 @@ resource containerApp 'Microsoft.App/containerApps@2022-03-01' ={
           env: [
             {
               name: 'DATABASE_CONNECTION_STRING'
-              value: 'Server=${sqlServer.properties.fullyQualifiedDomainName};Database=${sqlDB.name};Encrypt=true;Authentication=Active Directory Default;'
+              // value: 'Server=tcp:${sqlServer.properties.fullyQualifiedDomainName},1433;Initial Catalog=${sqlDB.name};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication="Active Directory Default";'
+              value: 'Server=tcp:cdw-sqlprojtest-20240719-sql.database.windows.net,1433;Initial Catalog=AdventureWorksLT;Persist Security Info=False;User ID=sqlsa;Password=${sqlPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
             }
           ]
         }
