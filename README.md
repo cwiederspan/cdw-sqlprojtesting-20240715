@@ -26,6 +26,11 @@ az login -t $TENANT_ID
 az group create --name $BASE_NAME --location $LOCATION
 
 
+# Create a Service Principal
+
+az ad sp create-for-rbac --name $BASE_NAME-sp --sdk-auth --role contributor --scopes /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$BASE_NAME
+
+
 # Create the SQL Server and Database
 
 az deployment group create -g $BASE_NAME \
