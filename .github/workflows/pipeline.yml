@@ -61,7 +61,7 @@ jobs:
       - name: SQL Deploy
         uses: azure/sql-action@v2.3
         with:
-          connection-string: 'Server=tcp:${{ vars.BASE_NAME }}.database.windows.net,1433;Database=${{ vars.SQL_DB_NAME }};User ID=${{ vars.SQL_USERNAME }};Password=${{ secrets.SQL_PASSWORD }};Trusted_Connection=False;Encrypt=True;'   # Your connection string
+          connection-string: 'Server=tcp:${{ vars.BASE_NAME }}-sql.database.windows.net,1433;Initial Catalog=${{ vars.SQL_DB_NAME }};Persist Security Info=False;User ID=${{ vars.SQL_USERNAME }};Password=${{ secrets.SQL_PASSWORD }};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'   # Your connection string
           path: './database/AdventureWorksLT/AdventureWorksLT.sqlproj'
           action: 'publish'
           build-arguments: '-c Release'                 # Optional build options
