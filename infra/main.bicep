@@ -49,7 +49,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     administrators: {
       administratorType: 'ActiveDirectory'
       principalType: 'Application'
-      azureADOnlyAuthentication: true
+      azureADOnlyAuthentication: false
       login: muid.name
       sid: muid.properties.clientId
       tenantId: muid.properties.tenantId
