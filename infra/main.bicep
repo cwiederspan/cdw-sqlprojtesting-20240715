@@ -110,7 +110,7 @@ resource containerApp 'Microsoft.App/containerApps@2022-03-01' ={
       containers: [
         {
           image: 'cwiederspan/adventureworksdab:latest'
-          name: 'AdventureWorksLT'
+          name: 'dab-adventureworks'
           env: [
             {
               name: 'DATABASE_CONNECTION_STRING'
