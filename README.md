@@ -35,11 +35,16 @@ databaseName=AdventureWorksLT \
 sqlUsername=$SQL_USER \
 sqlPassword=$SQL_PASSWORD
 
-# Clean up and delete the Resource Group
-az group delete --name $BASE_NAME --yes
+# Setup the DAB configuration file
+dab init --database-type "mssql" --connection-string "@env('DATABASE_CONNECTION_STRING')"
+dab add Product --source "SalesLT.Product" --permissions "anonymous:read"
+dab add Customer --source "SalesLT.Customer" --permissions "anonymous:read"
 
 # Other miscellaneous
 docker build -t cwiederspan/adventureworksdab:latest -f ./dab/Dockerfile ./dab
 docker push 
+
+# Clean up and delete the Resource Group
+az group delete --name $BASE_NAME --yes
 
 ```
