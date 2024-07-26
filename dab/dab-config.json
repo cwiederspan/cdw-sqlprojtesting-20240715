@@ -17,35 +17,19 @@
       "enabled": true,
       "path": "/graphql",
       "allow-introspection": true
+    },
+    "host": {
+      "cors": {
+        "origins": [],
+        "allow-credentials": false
+      },
+      "authentication": {
+        "provider": "StaticWebApps"
+      },
+      "mode": "production"
     }
   },
   "entities": {
-    "Product": {
-      "source": {
-        "object": "SalesLT.Product",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "Product",
-          "plural": "Products"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            {
-              "action": "read"
-            }
-          ]
-        }
-      ]
-    },
     "Customer": {
       "source": {
         "object": "SalesLT.Customer",
@@ -66,7 +50,7 @@
           "role": "anonymous",
           "actions": [
             {
-              "action": "read"
+              "action": "*"
             }
           ]
         }
