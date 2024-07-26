@@ -40,5 +40,4 @@ PUT {{baseUrl}}/api/Customer/CustomerID/1
 
 ### Graph API Query
 
-GET {{baseUrl}}/graphql
-
+POST {{baseUrl}}/graphql
